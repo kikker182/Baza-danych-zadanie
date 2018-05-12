@@ -1,0 +1,25 @@
+<p>Wszystkie rekordy osób (imię i nazwisko) osób, które mają mniej niż 18 lat, ale więcej niż 10</p>
+
+<?php
+    
+    $sql = "SELECT * FROM dane_osobowe WHERE wiek<18 AND wiek>10;";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0)
+    {
+        echo "<table border=\"1\">";
+        
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result))
+        {
+            echo '<tr><td>' . $row["imie"] . '</td><td>' . $row["nazwisko"] . '</td></tr>';
+        }
+        
+        echo "</table>";
+    }
+    else
+    {
+     echo "0 results";
+    }
+    
+?>
